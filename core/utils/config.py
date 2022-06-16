@@ -18,6 +18,7 @@ class Config:
 
     # Embed
     COLORS: dict[str, str]
+    EMBEDS: dict[str, dict[str, str]]
 
     # Reaction Roles
     ROLES_CHANNEL: int
@@ -43,6 +44,7 @@ def load_config(path: Path) -> Type[Config]:
     Config.PRESENCE_TIMEOUT = config['presence-timeout']
 
     Config.COLORS = {name: color for name, color in config['color-palette'].items()}
+    Config.EMBEDS = {name: {key: value for key, value in configs.items()} for name, configs in config['embeds'].items()}
 
     Config.ROLES_CHANNEL = config['roles-channel']
     Config.ROLES = {emoji: role_id for emoji, role_id in config['roles'].items()}

@@ -3,7 +3,6 @@ owner: 647168792908267553
 guild: 811495613362602024
 presences:
   - Reviewing Code
-  - https://github.com/feluxerich/core-bot
 presence-timeout: 300
 
 # Embed
@@ -17,6 +16,11 @@ color-palette:
   purple: 0xBDB2FF
   pink: 0xFFC6FF
   white: 0xFFFFFC
+embeds:
+  ping:
+    title: Pong 🏓
+    description: '{}ms'
+    color: blue
 
 # Reaction Roles
 roles-channel: 986723674604314634

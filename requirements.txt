@@ -1,2 +1,4 @@
-discord==1.7.3
+discord.py==1.7.3
 PyYAML==6.0
+
+termcolor~=1.1.0
