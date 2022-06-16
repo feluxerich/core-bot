@@ -1,0 +1,27 @@
+# General
+owner: 647168792908267553
+guild: 811495613362602024
+presences:
+  - Reviewing Code
+  - https://github.com/feluxerich/core-bot
+presence-timeout: 300
+
+# Embed
+color-palette:
+  red: 0xFFADAD
+  orange: 0xFFD6A5
+  yellow: 0xFDFFB6
+  green: 0xCAFFBF
+  aqua: 0x9BF6FF
+  blue: 0xA0C4FF
+  purple: 0xBDB2FF
+  pink: 0xFFC6FF
+  white: 0xFFFFFC
+
+# Reaction Roles
+roles-channel: 986723674604314634
+roles:
+  <:weed:822830737673551895>: 816031798823616512
+
+# Server Stats
+member-count-channel: 986776124140965978
