@@ -1,4 +1,5 @@
 import logging
+from dataclasses import dataclass
 from os.path import isfile
 from pathlib import Path
 from typing import Type
@@ -9,6 +10,7 @@ from termcolor import colored
 from core.exceptions.no_config_found import NoConfigFound
 
 
+@dataclass
 class Config:
     # General
     OWNER: int

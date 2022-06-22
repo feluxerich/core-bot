@@ -19,8 +19,26 @@ color-palette:
 embeds:
   ping:
     title: Pong 🏓
-    description: '{}ms'
+    description: '{ping}ms'
     color: blue
+  calculator:
+    title: Calculator 🧮
+    color: purple
+    fields:
+      input:
+        name: 'Input'
+        value: |
+          ```
+          {input}
+          ```
+        inline: true
+      result:
+        name: 'Result'
+        value: |
+          ```
+          {result}
+          ```
+        inline: true
 
 # Reaction Roles
 roles-channel: 986723674604314634
