@@ -11,7 +11,7 @@ class CalculatorCog(Cog):
 
     @command(aliases=['calc'])
     async def calculate(self, ctx, *, calculation):
-        parsed_calculation = Tokenizer(calculation).gen_tokens()
+        parsed_calculation = Tokenizer(calculation)()
         result: int | float = eval(''.join([token.value for token in parsed_calculation]))
         embed = Embed(
             title=self.client.config.EMBEDS['calculator']['title'],

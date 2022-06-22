@@ -12,7 +12,7 @@ class PingCog(Cog):
     async def ping(self, ctx):
         await ctx.send(embed=Embed(
             title=self.client.config.EMBEDS['ping']['title'],
-            description=self.client.config.EMBEDS['ping']['description'].format(round(self.client.latency * 1000)),
+            description=self.client.config.EMBEDS['ping']['description'].format(ping=round(self.client.latency * 1000)),
             color=self.client.config.COLORS[self.client.config.EMBEDS['ping']['color']]
         ))
 

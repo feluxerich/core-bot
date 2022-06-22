@@ -31,7 +31,7 @@ class Tokenizer:
 
         self.tokens: list[Token] = list()
 
-    def gen_tokens(self) -> list[Token]:
+    def _gen_tokens(self) -> list[Token]:
         for char in self.source:
             self.token = Token(TokenType.INVALID, char)
             match str(char):
@@ -71,3 +71,5 @@ class Tokenizer:
             if token.token_type == TokenType.INVALID:
                 self.tokens.remove(token)
         return self.tokens
+
+    __call__ = _gen_tokens
