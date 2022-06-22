@@ -1,9 +1,11 @@
 from discord.utils import get
 from discord.ext.commands import Cog
 
+from utils.bot import ExtendedBot
+
 
 class ReactionRoleCog(Cog):
-    def __init__(self, client):
+    def __init__(self, client: ExtendedBot):
         self.client = client
 
     @Cog.listener()
