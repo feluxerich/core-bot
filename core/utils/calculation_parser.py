@@ -1,3 +1,4 @@
+import math
 import re
 from enum import Enum
 
@@ -17,6 +18,12 @@ class TokenType(Enum):
     DOT = '.'
     COMMA = ','
 
+    CHAR_LITERAL = 'char'
+
+    E = 'e'
+    PI = 'pi'
+    TAU = 'tau'
+
 
 class Token:
     def __init__(self, token_type: TokenType, value):
@@ -26,7 +33,8 @@ class Token:
 
 class Tokenizer:
     def __init__(self, source: str):
-        self.source = re.sub(r'\s', '', source.replace(',', '.'))
+        source = source.lower().replace('^', '**').replace(',', '.')
+        self.source = re.sub(r'\s', '', source)
         self.token: Token | None = None
 
         self.tokens: list[Token] = list()
@@ -51,9 +59,13 @@ class Tokenizer:
                 case ',':
                     self.token.token_type = TokenType.COMMA
 
+                case 'e':
+                    self.token.token_type = TokenType.E
+
                 case _:
                     if char.isdigit():
                         self.token.token_type = TokenType.INT
+
             if len(self.tokens) > 0:
                 last_token = self.tokens[-1]
                 if last_token.token_type == self.token.token_type:
@@ -65,6 +77,9 @@ class Tokenizer:
                         last_token.token_type = TokenType.FLOAT
                     last_token.value += self.token.value
                     continue
+            if self.token.token_type in [TokenType.E, TokenType.PI, TokenType.TAU]:
+                math_type = str(self.token.token_type).replace('TokenType.', '').lower()
+                self.token = Token(TokenType.FLOAT, str(eval(f'math.{math_type}')))
             self.tokens.append(self.token)
 
         for token in self.tokens:
