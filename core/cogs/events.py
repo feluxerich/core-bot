@@ -17,5 +17,5 @@ class EventsCog(Cog):
         await update_member_count(self.client, self.client.get_guild(self.client.config.GUILD))
 
 
-def setup(client):
-    client.add_cog(EventsCog(client))
+async def setup(client):
+    await client.add_cog(EventsCog(client))

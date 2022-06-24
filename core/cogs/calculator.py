@@ -3,6 +3,7 @@ from discord.ext.commands import Cog, command
 
 from utils.bot import ExtendedBot
 from utils.calculation_parser import Tokenizer
+from utils.message import send
 
 
 class CalculatorCog(Cog):
@@ -28,8 +29,8 @@ class CalculatorCog(Cog):
                 inline=bool(self.client.config.EMBEDS['calculator']['fields'][field]['inline'])
             )
 
-        await ctx.send(embed=embed)
+        await send(context=ctx, embed=embed)
 
 
-def setup(client):
-    client.add_cog(CalculatorCog(client))
+async def setup(client):
+    await client.add_cog(CalculatorCog(client))

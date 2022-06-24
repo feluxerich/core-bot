@@ -25,5 +25,5 @@ class ReactionRoleCog(Cog):
         await member.remove_roles(get(member.guild.roles, id=self.client.config.ROLES[str(payload.emoji)]))
 
 
-def setup(client):
-    client.add_cog(ReactionRoleCog(client))
+async def setup(client):
+    await client.add_cog(ReactionRoleCog(client))
