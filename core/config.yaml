@@ -3,6 +3,7 @@ owner: 647168792908267553
 guild: 811495613362602024
 presences:
   - Reviewing Code
+  - https://github.com/feluxerich/core-bot
 presence-timeout: 300
 
 # Embed
@@ -26,19 +27,39 @@ embeds:
     color: purple
     fields:
       input:
-        name: 'Input'
+        name: Input
         value: |
           ```
           {input}
           ```
         inline: true
       result:
-        name: 'Result'
+        name: Result
         value: |
           ```
           {result}
           ```
         inline: true
+  timeout:
+    title: Moderator
+    description: '{member} got a timeout'
+    color: red
+    fields:
+      reason:
+        name: Reason
+        value: |
+          ```
+          {reason}
+          ```
+        inline: true
+      until:
+        name: Until
+        value: |
+          ```
+          {until}
+          ```
+        inline: true
+        
 
 # Reaction Roles
 roles-channel: 986723674604314634
