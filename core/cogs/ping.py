@@ -9,7 +9,7 @@ class PingCog(Cog):
     def __init__(self, client: ExtendedBot):
         self.client = client
 
-    @command(aliases=['p'])
+    @command(name='ping')
     async def ping(self, ctx):
         await send(context=ctx, embed=Embed(
             title=self.client.config.EMBEDS['ping']['title'],

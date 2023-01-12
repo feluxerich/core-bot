@@ -9,11 +9,11 @@ class EventsCog(Cog):
         self.client = client
 
     @Cog.listener()
-    async def on_member_join(self, payload):
+    async def on_member_join(self, _):
         await update_member_count(self.client, self.client.get_guild(self.client.config.GUILD))
 
     @Cog.listener()
-    async def on_member_remove(self, payload):
+    async def on_member_remove(self, _):
         await update_member_count(self.client, self.client.get_guild(self.client.config.GUILD))
 
 

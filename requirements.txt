@@ -1,11 +1,3 @@
-aiohttp==3.7.4.post0
-async-timeout==3.0.1
-attrs==21.4.0
-chardet==4.0.0
-discord.py @ git+https://github.com/Rapptz/discord.py@13359372887abced96566bbf26a96e065faee782
-idna==3.3
-multidict==6.0.2
+aiohttp==3.8.3
+discord.py==2.1.0
 PyYAML==6.0
-termcolor==1.1.0
-typing_extensions==4.2.0
-yarl==1.7.2
