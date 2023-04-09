@@ -5,7 +5,7 @@ from typing import Type
 
 import yaml
 
-from core.exceptions.no_config_found import NoConfigFound
+from exceptions.no_config_found import NoConfigFound
 
 
 @dataclass
