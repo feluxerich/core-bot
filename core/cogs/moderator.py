@@ -2,7 +2,7 @@ from datetime import timedelta
 
 from discord import Embed, Member, Interaction
 from discord.ext.commands import Cog
-from discord.app_commands import command, describe
+from discord.app_commands import command, describe, check
 
 from utils.bot import ExtendedBot
 from utils.message import send
@@ -13,7 +13,7 @@ class ModeratorCog(Cog):
         self.client = client
 
     @command(name='timeout', description='Timeout of a member who behaves inappropriately')
-    @describe(member='The member to be timeouted', until='Time formatted like: 1w')
+    @describe(member='The member to be timeouted', until='Time formatted like 1w for one week')
     async def timeout(self, interaction: Interaction, member: Member, until: str = None, *, reason: str = None):
         until_timedelta: timedelta = timedelta(hours=1)
         if type(until) != timedelta:
