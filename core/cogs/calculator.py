@@ -1,5 +1,6 @@
-from discord import Embed
-from discord.ext.commands import Cog, command
+from discord import Embed, Interaction
+from discord.app_commands import command, describe
+from discord.ext.commands import Cog
 
 from utils.bot import ExtendedBot
 from utils.calculation_parser import Tokenizer
@@ -10,8 +11,9 @@ class CalculatorCog(Cog):
     def __init__(self, client: ExtendedBot):
         self.client = client
 
-    @command(aliases=['calc'])
-    async def calculate(self, ctx, *, calculation):
+    @command(name='calculate', description='Do your homework :)')
+    @describe(calculation='Your calculation string')
+    async def calculate(self, interaction: Interaction, *, calculation: str):
         parsed_calculation = Tokenizer(calculation)()
         result: int | float = eval(''.join([token.value for token in parsed_calculation]))
         embed = Embed(
@@ -29,8 +31,8 @@ class CalculatorCog(Cog):
                 inline=bool(self.client.config.EMBEDS['calculator']['fields'][field]['inline'])
             )
 
-        await send(context=ctx, embed=embed)
+        await send(interaction=interaction, embed=embed)
 
 
-async def setup(client):
-    await client.add_cog(CalculatorCog(client))
+async def setup(client: ExtendedBot):
+    await client.add_cog(CalculatorCog(client), guild=client.DEFAULT_GUILD)

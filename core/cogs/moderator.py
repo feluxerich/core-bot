@@ -1,7 +1,8 @@
 from datetime import timedelta
 
-from discord import Embed, Member
-from discord.ext.commands import Cog, command
+from discord import Embed, Member, Interaction
+from discord.ext.commands import Cog
+from discord.app_commands import command, describe
 
 from utils.bot import ExtendedBot
 from utils.message import send
@@ -11,22 +12,23 @@ class ModeratorCog(Cog):
     def __init__(self, client: ExtendedBot):
         self.client = client
 
-    @command()
-    async def timeout(self, ctx, member: Member, until: str = None, *, reason=None):
+    @command(name='timeout', description='Timeout of a member who behaves inappropriately')
+    @describe(member='The member to be timeouted', until='Time formatted like: 1w')
+    async def timeout(self, interaction: Interaction, member: Member, until: str = None, *, reason: str = None):
         until_timedelta: timedelta = timedelta(hours=1)
         if type(until) != timedelta:
             time = float(until[:-1])
             unit = until[-1]
             match unit:
-                case 'w':
+                case 'w' | 'week' | 'weeks':
                     until_timedelta = timedelta(weeks=time)
-                case 'd':
+                case 'd' | 'day' | 'days':
                     until_timedelta = timedelta(days=time)
-                case 'h':
+                case 'h' | 'hour' | 'hours':
                     until_timedelta = timedelta(hours=time)
-                case 'm':
+                case 'm' | 'minute' | 'minutes' | 'mins':
                     until_timedelta = timedelta(minutes=time)
-                case 's':
+                case 's' | 'second' | 'seconds' | 'secs':
                     until_timedelta = timedelta(seconds=time)
 
         await member.timeout(until_timedelta, reason=reason)
@@ -47,8 +49,8 @@ class ModeratorCog(Cog):
                 value=self.client.config.EMBEDS['timeout']['fields'][field]['value'].format(**format_keys),
                 inline=bool(self.client.config.EMBEDS['timeout']['fields'][field]['inline'])
             )
-        await send(context=ctx, embed=embed)
+        await send(interaction=interaction, embed=embed)
 
 
-async def setup(client):
-    await client.add_cog(ModeratorCog(client))
+async def setup(client: ExtendedBot):
+    await client.add_cog(ModeratorCog(client), guild=client.DEFAULT_GUILD)

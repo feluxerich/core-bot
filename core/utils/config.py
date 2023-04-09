@@ -1,11 +1,9 @@
-import logging
 from dataclasses import dataclass
 from os.path import isfile
 from pathlib import Path
 from typing import Type
 
 import yaml
-from termcolor import colored
 
 from core.exceptions.no_config_found import NoConfigFound
 
@@ -26,18 +24,14 @@ class Config:
     ROLES_CHANNEL: int
     ROLES: dict[str, int]
 
-    # Server Stats
+    # Server
     MEMBER_COUNT_CHANNEL: int
-
-
-def config_exists(function):
-    def wrapper(*args, **kwargs):
-        if isfile(kwargs.get('path')):
-            return function(*args, **kwargs)
-        raise NoConfigFound
+    CREATE_VOICE_CHANNEL: int
 
 
 def load_config(path: Path) -> Type[Config]:
+    if not isfile(path):
+        raise NoConfigFound
     with path.open() as f:
         config = yaml.safe_load(f)
     Config.OWNER = config['owner']
@@ -52,6 +46,7 @@ def load_config(path: Path) -> Type[Config]:
     Config.ROLES = {emoji: role_id for emoji, role_id in config['roles'].items()}
 
     Config.MEMBER_COUNT_CHANNEL = config['member-count-channel']
+    Config.CREATE_VOICE_CHANNEL = config['create-voice-channel']
 
-    print(colored('Loaded Config', 'green'))
+    print('Loaded Config')
     return Config

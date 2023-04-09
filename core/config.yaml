@@ -4,6 +4,7 @@ guild: 811495613362602024
 presences:
   - Reviewing Code
   - https://github.com/feluxerich/core-bot
+  - Supporting Slash-Commands
 presence-timeout: 300
 
 # Embed
@@ -66,5 +67,6 @@ roles-channel: 986723674604314634
 roles:
   <:weed:822830737673551895>: 816031798823616512
 
-# Server Stats
+# Server
 member-count-channel: 986776124140965978
+create-voice-channel: 832265711282815008

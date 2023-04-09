@@ -1,22 +1,30 @@
 from os import listdir
 
-import asyncio
+from discord import Object
 from discord.ext.commands import Bot, ExtensionNotLoaded
-from termcolor import colored
+
+from utils.config import Config
 
 
 class ExtendedBot(Bot):
-    def __init__(self, config, command_prefix, **options):
+    DEFAULT_GUILD: Object
+
+    def __init__(self, config: Config, command_prefix, **options):
         super().__init__(command_prefix, **options)
         self.config = config
+        self.DEFAULT_GUILD = Object(id=self.config.GUILD)
 
     async def setup_hook(self) -> None:
         for file in listdir('./cogs'):
             if file.endswith('.py'):
                 try:
                     await self.load_extension(f'cogs.{file[:-3]}')
-                    print(colored(f'Loaded {file}', 'green'))
+                    print(f'Loaded {file}')
                 except ExtensionNotLoaded:
-                    print(colored(f'Not a python file: {file}', 'red'))
+                    print(f'Not a python file: {file}')
             else:
-                print(colored(f'Not a python file: {file}', 'red'))
+                print(f'Not a python file: {file}')
+        await self.sync_commands()
+
+    async def sync_commands(self) -> None:
+        await self.tree.sync(guild=self.DEFAULT_GUILD)

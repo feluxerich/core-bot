@@ -1,8 +1,6 @@
-from discord import Embed, Message
-from discord.ext.commands import Context
+from discord import Embed, Message, Interaction
 
 
-async def send(context: Context, embed: Embed) -> Message:
-    async with context.typing():
-        return await context.send(embed=embed)
+async def send(interaction: Interaction, embed: Embed) -> Message:
+    return await interaction.response.send_message(embed=embed)
 

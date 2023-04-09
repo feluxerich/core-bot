@@ -3,7 +3,6 @@ from os import getenv
 from pathlib import Path
 
 from discord import Intents, Game, Status
-from discord.ext.commands import when_mentioned_or
 
 from utils import ExtendedBot
 from utils.config import load_config
@@ -11,7 +10,7 @@ from utils.guild import update_member_count
 
 client = ExtendedBot(
     config=load_config(path=Path('config.yaml')),
-    command_prefix=when_mentioned_or('.'),
+    command_prefix='.',
     intents=Intents.all(),
     help_command=None
 )
