@@ -1,0 +1,8 @@
+version: '3.9'
+services:
+  bot:
+    image: ghcr.io/feluxerich/core-bot
+    env_file:
+      - .core.env
+    volumes:
+      - './core/config.yaml:/core/config.yaml'
