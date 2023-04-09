@@ -25,7 +25,6 @@ class EventsCog(Cog):
         if before.channel and before.channel.id in self.talks and len(before.channel.members) == 0:
             self.talks.remove(before.channel.id)
             await before.channel.delete(reason='talk_empty')
-            return
         new_voice = await after.channel.category.create_voice_channel(
             f'{member.display_name}\'s Talk',
             reason='talk_created'
