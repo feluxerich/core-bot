@@ -1,5 +1,6 @@
 import re
 from enum import Enum
+import math
 
 
 class TokenType(Enum):
@@ -21,7 +22,6 @@ class TokenType(Enum):
 
     E = 'e'
     PI = 'pi'
-    TAU = 'tau'
 
 
 class Token:
@@ -60,10 +60,13 @@ class Tokenizer:
 
                 case 'e':
                     self.token.token_type = TokenType.E
+                case 'π':
+                    self.token.token_type = TokenType.PI
 
                 case _:
-                    if char.isdigit():
-                        self.token.token_type = TokenType.INT
+                    if not char.isdigit():
+                        continue
+                    self.token.token_type = TokenType.INT
 
             if len(self.tokens) > 0:
                 last_token = self.tokens[-1]
@@ -76,7 +79,7 @@ class Tokenizer:
                         last_token.token_type = TokenType.FLOAT
                     last_token.value += self.token.value
                     continue
-            if self.token.token_type in [TokenType.E, TokenType.PI, TokenType.TAU]:
+            if self.token.token_type in [TokenType.E, TokenType.PI]:
                 math_type = str(self.token.token_type).replace('TokenType.', '').lower()
                 self.token = Token(TokenType.FLOAT, str(eval(f'math.{math_type}')))
             self.tokens.append(self.token)

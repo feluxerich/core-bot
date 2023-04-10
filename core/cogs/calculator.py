@@ -1,6 +1,5 @@
-from discord import Embed, Interaction
+from discord import Interaction
 from discord.app_commands import command, describe
-from discord.colour import parse_hex_number
 from discord.ext.commands import Cog
 
 from utils.bot import ExtendedBot
