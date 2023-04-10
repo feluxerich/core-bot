@@ -1,4 +1,5 @@
 from os import listdir
+from typing import Type
 
 from discord import Object
 from discord.ext.commands import Bot, ExtensionNotLoaded
@@ -9,7 +10,7 @@ from utils.config import Config
 class ExtendedBot(Bot):
     DEFAULT_GUILD: Object
 
-    def __init__(self, config: Config, command_prefix, **options):
+    def __init__(self, config: Type[Config], command_prefix, **options):
         super().__init__(command_prefix, **options)
         self.config = config
         self.DEFAULT_GUILD = Object(id=self.config.GUILD)
