@@ -2,6 +2,7 @@ from datetime import timedelta
 from typing import Optional
 
 from discord import Member, Interaction
+from discord.app_commands.checks import has_permissions
 from discord.ext.commands import Cog
 from discord.app_commands import command, describe
 
@@ -15,6 +16,7 @@ class ModeratorCog(Cog):
 
     @command(name='timeout', description='Timeout of a member who behaves inappropriately')
     @describe(member='The member to be timeouted', duration='Time formatted like 1w for one week')
+    @has_permissions(moderate_members=True)
     async def timeout(self, interaction: Interaction, member: Member, duration: str, *, reason: Optional[str] = None):
         until_timedelta: timedelta = timedelta(hours=1)
         if type(duration) != timedelta:
