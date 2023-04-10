@@ -1,4 +1,4 @@
-from discord import Interaction, Embed
+from discord import Interaction, Embed, Color
 from discord.app_commands import command
 from discord.ext.commands import Cog
 
@@ -20,7 +20,11 @@ class MiscCog(Cog):
                 [f'`{i.name}` - {i.description}' for i in self.client.get_cog(cog).get_app_commands()]
             )
             description += f'{cog_help_string}\n\n'
-        await send(interaction=interaction, embed=Embed(title='Help', description=description))
+        await send(interaction=interaction, embed=Embed(
+            title='Help',
+            description=description,
+            color=Color.from_str(self.client.config.COLORS['pink'])
+        ))
 
     @command(name='ping', description='Returns the current ping of the bot')
     async def ping(self, interaction: Interaction):
