@@ -60,7 +60,6 @@ embeds:
           {until}
           ```
         inline: true
-        
 
 # Reaction Roles
 roles-channel: 986723674604314634

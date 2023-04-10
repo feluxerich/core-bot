@@ -13,7 +13,7 @@ def make_embed(client: ExtendedBot, embed_name: str, **format_keys) -> Embed:
         color=Color.from_str(client.config.COLORS[client.config.EMBEDS[embed_name]['color']])
     )
     if 'description' in client.config.EMBEDS[embed_name].keys():
-        embed.description = client.config.EMBEDS[embed_name]['description'].format(**format_keys),
+        embed.description = client.config.EMBEDS[embed_name]['description'].format(**format_keys)
     if 'fields' in client.config.EMBEDS[embed_name].keys():
         for field in client.config.EMBEDS[embed_name]['fields']:
             embed.add_field(
