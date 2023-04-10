@@ -18,7 +18,7 @@ class Config:
 
     # Embed
     COLORS: dict[str, str]
-    EMBEDS: dict[str, dict[str, str]]
+    EMBEDS: dict[str, dict[str, str | dict[str, dict[str, str]]]]  # dict[str, dict[str, typing.Any]]
 
     # Reaction Roles
     ROLES_CHANNEL: int
