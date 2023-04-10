@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from os.path import isfile
 from pathlib import Path
-from typing import Type
+from typing import Type, Any
 
 import yaml
 
@@ -18,7 +18,7 @@ class Config:
 
     # Embed
     COLORS: dict[str, str]
-    EMBEDS: dict[str, dict[str, str | dict[str, dict[str, str]]]]  # dict[str, dict[str, typing.Any]]
+    EMBEDS: dict[str, dict[str, Any]]
 
     # Reaction Roles
     ROLES_CHANNEL: int

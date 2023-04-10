@@ -60,6 +60,10 @@ embeds:
           {until}
           ```
         inline: true
+  error:
+    title: Error
+    description: '{error_message}'
+    color: red
 
 # Reaction Roles
 roles-channel: 986723674604314634
