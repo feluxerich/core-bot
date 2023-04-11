@@ -64,6 +64,24 @@ embeds:
     title: Error
     description: '{error_message}'
     color: red
+  minecraft:
+    title: Minecraft
+    fields:
+      name:
+        name: Name
+        value: |
+          ```
+          {username}
+          ```
+        inline: true
+      content:
+        name: Content
+        value: |
+          ```
+          {content}
+          ```
+        inline: true
+    color: purple
 
 # Reaction Roles
 roles-channel: 986723674604314634
