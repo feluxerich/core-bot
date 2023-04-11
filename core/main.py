@@ -31,6 +31,8 @@ async def on_app_command_error(interaction: Interaction, error: Any):
     error_messages = {
         MissingPermissions: 'Missing Permissions'
     }
+    if not type(error) in error_messages.keys():
+        return
     await send(interaction=interaction, embed=make_embed(
         client,
         'error',
